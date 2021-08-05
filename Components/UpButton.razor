@@ -1,0 +1,18 @@
+
+<a href="#" class="up-button @Show" target="_top"></a>
+ 
+@using Newtonsoft.Json.Linq
+@code{
+   [Parameter] public string Show { get; set; } ="";
+   /*async Task Mostrar(){
+      using (HttpClient Client = new HttpClient()){
+         var result = await Client.GetStringAsync("https://apis.datos.gob.ar/georef/api/provincias?campos=nombre");
+         //Console.WriteLine(result.StatusCode);
+         Console.WriteLine(result);
+         dynamic json = JObject.Parse(result);
+         foreach (var e in json.provincias){   
+            Console.WriteLine(e.nombre);
+         }
+      }
+   }*/
+}

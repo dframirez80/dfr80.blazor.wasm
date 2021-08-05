@@ -1,0 +1,33 @@
+﻿@page "/"
+@using Microsoft.JSInterop
+
+<div>
+    <blazorApp.Components.NavBar />
+    <blazorApp.Components.Init />
+    <blazorApp.Components.About />
+    <blazorApp.Components.Services />
+    <blazorApp.Components.Portfolio />
+    <blazorApp.Components.Contact />
+    <blazorApp.Components.Footer />
+    <blazorApp.Components.UpButton Show="@ShowBtn"/>
+</div>
+
+@code{
+    private string ShowBtn;
+    private static Action<string, string> action;   // Encapsula un método que tiene un solo parámetro
+    protected override void OnInitialized() => action = UpdateData;  // instancia de action
+    private void UpdateData(string value, string screen)
+    {
+        //Console.WriteLine(screen);
+        double ScrollAxisY = Double.Parse(value,System.Globalization.CultureInfo.InvariantCulture);
+        if(ScrollAxisY > 200) ShowBtn = "up-button-show";
+        else ShowBtn = "";
+        StateHasChanged();
+    }
+
+    [JSInvokable]
+    public static void ScrollY(string value, string screen)
+    {
+        action.Invoke(value,screen);
+    }
+}
